@@ -1,6 +1,12 @@
 sqlite3 = require('lsqlite3')
 msg = require('mp.msg')
 
+local history_db_path = ''
+do
+    local cfg = mp.find_config_file('.')
+    history_db_path = cfg:sub(1, #cfg - 1) .. 'history.db'
+end
+
 last_insert_id = nil
 db = nil
 
@@ -12,7 +18,7 @@ end
 -- Check if table exist or create it otherwise
 function start_file()
     msg.info("Opening database..")
-    db, errcode, errmsg = sqlite3.open('.config/mpv/history.db')
+    db, errcode, errmsg = sqlite3.open(history_db_path)
     if db == nil then
         error(string.format("DB Failed to open: %d %s", errcode, errmsg))
     end
