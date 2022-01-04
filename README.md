@@ -2,6 +2,18 @@
 
 A simple lua plugin for the mpv player to keep track of your viewing history in slqite3 database
 
+## Installation
+This script requires lsqlite3 to be installed on your system. To do so, you must first install [Luarocks](https://github.com/luarocks/luarocks/wiki/Download)
+Once that is done you must then download the library itself:
+### Linux:
+```bash
+sudo luarocks --lua-version 5.2 lsqlite3 # mpv uses Lua 5.2, so we must specify that
+```
+We must use `sudo` to install it system-wide because that's how the lua vm mpv uses can find it.
+### Windows:
+I have no idea. You need to install `sqlite3` and make it visible while installing `lsqlite3` with luarocks. If you manage to do
+this please let me know so i can update the REAMDE.
+
 ## DB Table
 The pluing will try to load check if the table `history_item` exists and if not it will create one.
 The column names are as follows:
